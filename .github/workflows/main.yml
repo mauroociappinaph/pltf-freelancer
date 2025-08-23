@@ -16,6 +16,8 @@ jobs:
         with:
           node-version: '20' # Usar la versión de Node.js que se ajuste al proyecto
           cache: 'pnpm'
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Run lint
