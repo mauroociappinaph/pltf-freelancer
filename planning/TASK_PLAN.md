@@ -9,10 +9,13 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 - [ ] **1. Estructura del Monorepo y Dependencias**
 
   - [x] 1.1. Inicializar el monorepo de Nx en la rama `develop`.
-  - [ ] 1.2. Instalar dependencias principales del workspace con pnpm (typescript, prettier, eslint, husky).
+  - [x] 1.2. Instalar dependencias principales del workspace con pnpm (typescript, prettier, eslint, husky).
   - [ ] 1.3. Configurar los archivos raíz (`.prettierrc`, `.eslintrc.json`).
   - [ ] 1.4. Configurar Husky con `lint-staged` para el hook `pre-commit`.
   - [ ] 1.5. Habilitar Dependabot en la configuración del repositorio de GitHub para escaneo de vulnerabilidades.
+- [ ] **1.6. Configuración de Herramientas de Verificación de Código**
+  - [ ] 1.6.1. Configurar la verificación de dependencias circulares con `npx madge`.
+    - Nota: Para completar esta tarea, se requiere identificar el `<app-name>` o la ruta específica de la aplicación dentro del monorepo para el comando `npx madge --circular --extensions ts,tsx ./apps/<app-name>`.
   - _Requerimientos: 6.1, 6.3_
 
 - [ ] **2. Configuración de Docker**

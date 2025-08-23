@@ -27,10 +27,11 @@ Lanza el proceso con una frase clara y directa.
 #### Mi Respuesta
 
 Al recibir tu instrucción, yo me encargaré de:
-1.  Confirmar la tarea.
-2.  Actualizar mi rama `develop` local con los últimos cambios de GitHub (`git pull`).
-3.  Crear una nueva rama de feature con el nombre correcto (ej. `feat/TASK-1.1-init-nx`).
-4.  Notificarte que la rama está creada y lista para empezar a trabajar.
+1.  **Verificar duplicados:** Antes de iniciar la tarea, buscaré archivos o lógica existente que pueda indicar que la tarea ya está realizada o que hay componentes similares. Si encuentro algo, te lo notificaré para que decidamos cómo proceder.
+2.  Confirmar la tarea.
+3.  Actualizar mi rama `develop` local con los últimos cambios de GitHub (`git pull`).
+4.  Crear una nueva rama de feature con el nombre correcto (ej. `feat/TASK-1.1-init-nx`).
+5.  Notificarte que la rama está creada y lista para empezar a trabajar.
 
 ---
 
