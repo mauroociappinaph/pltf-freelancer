@@ -29,7 +29,11 @@ Consultar `planning/TASK_PLAN.md` para el estado más actualizado de las tareas.
 
 ## Problemas Conocidos
 
-Actualmente, estamos experimentando un problema al intentar generar la aplicación de NestJS (`backend`) con Nx. El error es `Unable to resolve local plugin with import path @nrwl/nest`. Se ha creado una issue en GitHub para su seguimiento.
+Actualmente, estamos experimentando los siguientes problemas:
+
+- **Generación de Aplicación Nx:** Al intentar generar la aplicación de NestJS (`backend`) con Nx, el comando falla con el error `Unable to resolve local plugin with import path @nrwl/nest`. A pesar de varios intentos de depuración, el problema persiste. Se ha intentado crear una issue en GitHub para su seguimiento, pero ha fallado debido a problemas de credenciales.
+- **CI/CD - pnpm no encontrado:** El workflow de GitHub Actions falla al no poder localizar `pnpm`. Se ha implementado un fix para instalar `pnpm` globalmente en el workflow, pero aún no se ha verificado su solución en un nuevo PR.
+- **Credenciales de GitHub para el Agente:** La creación automática de issues en GitHub por parte del agente está fallando debido a problemas de credenciales ("Bad credentials"), a pesar de que el token ha sido proporcionado. Se requiere verificar la configuración del token y sus permisos.
 
 ## Configuración del Entorno de Desarrollo
 
@@ -51,7 +55,7 @@ pnpm verify-all
 
 ## Interacción con el Agente Gemini
 
-Este proyecto está siendo desarrollado con la asistencia de un agente de IA (Gemini CLI). Para entender cómo interactuar con el agente y el flujo de trabajo de desarrollo, consulta el archivo `planning/AGENT_WORKFLOW.md`.
+Este proyecto está siendo desarrollado con la asistencia de un agente de IA (Gemini CLI). Para entender cómo interactuar con el agente y el flujo de trabajo de desarrollo, consulta el archivo `planning/AGENT_WORKFLOW.md`. Se ha mejorado el workflow para incluir la creación automática de issues en GitHub para fallos en CI/CD y problemas irresolubles del agente, así como el seguimiento de su resolución.
 
 ## Configuración del Token de GitHub para el Agente
 
