@@ -25,7 +25,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - _Requerimientos: 6.1_
 
 - [ ] **3. Configuración de CI/CD (Integración Continua)**
-  - [ ] 3.1. Crear el directorio `.github/workflows`.
+  - [x] 3.1. Crear el directorio `.github/workflows`.
   - [ ] 3.2. Añadir un workflow básico de GitHub Actions que se ejecute en cada `push` a la rama `develop`.
   - [ ] 3.3. Configurar el workflow para que instale dependencias con `pnpm`, ejecute el linter y las pruebas.
   - _Requerimientos: 6.1, 6.3, 6.4_
