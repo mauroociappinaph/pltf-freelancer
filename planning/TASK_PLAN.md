@@ -10,7 +10,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 
   - [x] 1.1. Inicializar el monorepo de Nx en la rama `develop`.
   - [x] 1.2. Instalar dependencias principales del workspace con pnpm (typescript, prettier, eslint, husky).
-  - [ ] 1.3. Configurar los archivos raíz (`.prettierrc`, `.eslintrc.json`).
+  - [x] 1.3. Configurar los archivos raíz (`.prettierrc`, `.eslintrc.json`).
   - [ ] 1.4. Configurar Husky con `lint-staged` para el hook `pre-commit`.
   - [ ] 1.5. Habilitar Dependabot en la configuración del repositorio de GitHub para escaneo de vulnerabilidades.
 - [ ] **1.6. Configuración de Herramientas de Verificación de Código**
