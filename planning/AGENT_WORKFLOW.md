@@ -28,11 +28,12 @@ Lanza el proceso con una frase clara y directa.
 
 Al recibir tu instrucción, yo me encargaré de:
 
-1.  **Verificar duplicados:** Antes de iniciar la tarea, buscaré archivos o lógica existente que pueda indicar que la tarea ya está realizada o que hay componentes similares. Si encuentro algo, te lo notificaré para que decidamos cómo proceder.
-2.  Confirmar la tarea.
-3.  Actualizar mi rama `develop` local con los últimos cambios de GitHub (`git pull`).
-4.  Crear una nueva rama de feature con el nombre correcto (ej. `feat/TASK-1.1-init-nx`).
-5.  Notificarte que la rama está creada y lista para empezar a trabajar.
+1.  **Listar Issues Abiertos (Opcional):** Si me pides que te muestre los issues abiertos en GitHub, usaré `github__list_issues` para presentarte una lista de tareas pendientes. Esto te ayudará a elegir en qué trabajar.
+2.  **Verificar duplicados:** Antes de iniciar la tarea, buscaré archivos o lógica existente que pueda indicar que la tarea ya está realizada o que hay componentes similares. Si encuentro algo, te lo notificaré para que decidamos cómo proceder.
+3.  Confirmar la tarea.
+4.  Actualizar mi rama `develop` local con los últimos cambios de GitHub (`git pull`).
+5.  Crear una nueva rama de feature con el nombre correcto (ej. `feat/TASK-1.1-init-nx`).
+6.  Notificarte que la rama está creada y lista para empezar a trabajar.
 
 ---
 
@@ -105,7 +106,7 @@ Si te pregunto si quieres verificaciones, me indicarás qué comandos ejecutar.
 1.  Ejecutaré los comandos de verificación que me indiques.
 2.  Te reportaré los resultados.
 3.  **Si todas las verificaciones pasan:** Te preguntaré si puedo marcar la tarea como completada en `TASK_PLAN.md` (ej. `[ ]` a `[x]`).
-4.  **Si alguna verificación falla:** Te reportaré el fallo y te preguntaré cómo proceder (lo que podría llevarnos al flujo de manejo de errores). Si el fallo es en el workflow de CI/CD, y tienes configurado el token de GitHub, crearé automáticamente una issue en GitHub con el mensaje de error exacto, el stack trace (si aplica) y los pasos que llevaron al fallo. Una vez que el PR de fix asociado sea fusionado, añadiré un comentario a la issue indicando que el fix ha sido aplicado y, si es posible, un resumen de la solución.
+4.  **Si alguna verificación falla:** Te reportaré el fallo y te preguntaré cómo proceder (lo que podría llevarnos al flujo de manejo de errores). Si el fallo es en el workflow de CI/CD, y tienes configurado el token de GitHub, crearé automáticamente una issue en GitHub con el mensaje de error exacto, el stack trace (si aplica) y los pasos que llevaron al fallo. Una vez que el PR de fix asociado sea fusionado, añadiré un comentario a la issue indicando que el fix ha sido aplicado y, si es posible, un resumen de la solución. Además, si el issue fue creado por un fallo en el workflow de CI/CD o un problema persistente del agente, y el fix ha sido verificado, el agente cerrará automáticamente el issue.
 
 ---
 
