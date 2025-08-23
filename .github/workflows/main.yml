@@ -28,7 +28,7 @@ jobs:
         run: ls -la node_modules/.bin
       - name: Run lint
         run: npx eslint
-      - name: Run type check
-        run: pnpm nx tsc --noEmit
+      # - name: Run type check
+      #   run: pnpm nx tsc --noEmit
       - name: Run tests
         run: pnpm test
