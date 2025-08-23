@@ -1,0 +1,164 @@
+¡Excelente! Para crear una primera versión funcional (MVP) de tu plataforma de selección de talento *freelance*, centrándonos en TypeScript y la máxima practicidad, aquí tienes un *prompt* técnico detallado que puedes utilizar:
+
+---
+
+**Prompt Técnico: MVP de Plataforma de Selección de Talento Freelance (TypeScript)**
+
+**Contexto:**
+Necesito desarrollar un **MVP** para una plataforma web que optimice la selección de talento *freelance*, abordando las principales frustraciones y deseos de reclutadores y *freelancers* identificados en nuestra investigación (transparencia, evaluación objetiva, eficiencia y seguridad). El enfoque es **funcionalidad básica, pero probada, en producción**.
+
+**Objetivo del MVP:**
+Crear una aplicación web **mínima pero funcional** que permita a *freelancers* postularse a proyectos y a reclutadores gestionar un proceso de selección inicial automatizado, con un énfasis en la evaluación de habilidades técnicas y un *matching* básico. Debe ser lo suficientemente robusta para probar la hipótesis central del producto.
+
+**Tecnologías Clave Requeridas:**
+*   **Frontend:** **React (preferiblemente con Next.js para una base escalable y tipado robusto)**, usando **TypeScript**.
+*   **Backend:** **Node.js con Express o NestJS**, usando **TypeScript**.
+*   **Base de Datos:** **PostgreSQL**.
+*   **ORM:** **Prisma ORM** (por su excelente integración con TypeScript y migraciones).
+*   **Autenticación:** JWT (JSON Web Tokens).
+*   **Manejo de estados:** Zustand (para gestión de datos con el backend).
+
+**Modelos de Datos Esenciales (Schema con Prisma):**
+
+1.  **User:**
+    *   `id`: String (UUID)
+    *   `email`: String (único)
+    *   `passwordHash`: String
+    *   `role`: Enum (`FREELANCER`, `RECRUITER`)
+    *   `createdAt`: DateTime
+    *   `updatedAt`: DateTime
+    *   **Relaciones:** `FreelancerProfile?`, `RecruiterProfile?`
+
+2.  **FreelancerProfile:**
+    *   `id`: String (UUID)
+    *   `userId`: String (único, relación con `User`)
+    *   `firstName`: String
+    *   `lastName`: String
+    *   `bio`: String?
+    *   `availability`: Enum (`FULL_TIME`, `PART_TIME`, `PROJECT_BASED`, `UNAVAILABLE`)
+    *   `skills`: String[] (array de strings, ej. `['React', 'Node.js', 'TypeScript']`)
+    *   `experienceYears`: Int?
+    *   **Relaciones:** `Application[]`
+
+3.  **RecruiterProfile:**
+    *   `id`: String (UUID)
+    *   `userId`: String (único, relación con `User`)
+    *   `companyName`: String
+    *   `contactPhone`: String?
+    *   `companyWebsite`: String?
+    *   **Relaciones:** `JobPosting[]`, `Test[]`
+
+4.  **JobPosting:**
+    *   `id`: String (UUID)
+    *   `recruiterId`: String (relación con `RecruiterProfile`)
+    *   `title`: String
+    *   `description`: String
+    *   `requiredSkills`: String[] (array de strings)
+    *   `estimatedDurationWeeks`: Int?
+    *   `budgetUSD`: Float?
+    *   `status`: Enum (`OPEN`, `CLOSED`)
+    *   `createdAt`: DateTime
+    *   `updatedAt`: DateTime
+    *   **Relaciones:** `Test?` (opcional, un test principal), `Application[]`
+
+5.  **Test:**
+    *   `id`: String (UUID)
+    *   `recruiterId`: String (relación con `RecruiterProfile`)
+    *   `jobPostingId`: String? (opcional, relación con `JobPosting`)
+    *   `title`: String
+    *   `description`: String?
+    *   `durationMinutes`: Int
+    *   `passScorePercentage`: Int
+    *   **Relaciones:** `Question[]`, `TestAttempt[]`
+
+6.  **Question:**
+    *   `id`: String (UUID)
+    *   `testId`: String (relación con `Test`)
+    *   `text`: String
+    *   `type`: Enum (`MULTIPLE_CHOICE`, `OPEN_TEXT` - solo `MULTIPLE_CHOICE` para MVP)
+    *   `options`: String[] (para `MULTIPLE_CHOICE`)
+    *   `correctAnswer`: String (para `MULTIPLE_CHOICE`, texto de la opción correcta)
+
+7.  **Application:**
+    *   `id`: String (UUID)
+    *   `freelancerId`: String (relación con `FreelancerProfile`)
+    *   `jobPostingId`: String (relación con `JobPosting`)
+    *   `status`: Enum (`APPLIED`, `TEST_PENDING`, `TEST_COMPLETED`, `MATCHED`, `REJECTED`, `HIRED`)
+    *   `coverLetter`: String?
+    *   `createdAt`: DateTime
+    *   `updatedAt`: DateTime
+    *   **Relaciones:** `TestAttempt?`
+
+8.  **TestAttempt:**
+    *   `id`: String (UUID)
+    *   `applicationId`: String (único, relación con `Application`)
+    *   `testId`: String (relación con `Test`)
+    *   `score`: Float?
+    *   `passed`: Boolean?
+    *   `completedAt`: DateTime?
+    *   `answers`: Json (guardar respuestas del *freelancer* en formato JSON)
+
+**Funcionalidades Mínimas Viables (MVP):**
+
+1.  **Autenticación y Autorización de Usuarios:**
+    *   **Registro y Login:** Permite a usuarios registrarse con email/contraseña y loguearse.
+    *   **Roles:** Distinción clara entre `FREELANCER` y `RECRUITER` al registrarse.
+    *   **Protección de Rutas:** Acceso restringido a ciertas partes de la aplicación según el rol.
+
+2.  **Gestión de Perfiles:**
+    *   **Freelancer:**
+        *   Crear y editar `FreelancerProfile` (nombre, apellido, biografía, disponibilidad, lista de habilidades, años de experiencia).
+        *   **Visualización de sus aplicaciones.**
+    *   **Recruiter:**
+        *   Crear y editar `RecruiterProfile` (nombre de empresa, contacto, sitio web).
+
+3.  **Gestión de Ofertas de Empleo (Recruiter):**
+    *   **Crear Oferta:** Publicar una nueva `JobPosting` con título, descripción, habilidades requeridas, duración estimada, presupuesto y asociar un `Test` existente (opcional).
+    *   **Listar/Ver Ofertas:** Visualizar todas las ofertas publicadas.
+    *   **Actualizar/Cerrar Oferta:** Modificar o cambiar el estado de una oferta.
+
+4.  **Creación de Pruebas Técnicas (Recruiter):**
+    *   **Crear Test:** Definir un `Test` con título, descripción, duración, porcentaje de aprobación.
+    *   **Añadir Preguntas:** Para cada `Test`, añadir **preguntas de tipo `MULTIPLE_CHOICE`** con texto, opciones y la respuesta correcta.
+
+5.  **Búsqueda y Postulación a Empleos (Freelancer):**
+    *   **Listar Ofertas:** Ver todas las `JobPosting` abiertas.
+    *   **Ver Detalle de Oferta:** Descripción completa del puesto y el test asociado (si aplica).
+    *   **Aplicar a Oferta:** Un *freelancer* puede crear una `Application` para un `JobPosting`, con una carta de presentación opcional.
+
+6.  **Realización y Evaluación Automatizada de Tests (Freelancer/Sistema):**
+    *   **Realizar Test:** Si una `JobPosting` tiene un `Test` asociado, el *freelancer* debe poder completarlo dentro del tiempo estipulado.
+    *   **Auto-Evaluación:** El backend **evaluará automáticamente** las respuestas de tipo `MULTIPLE_CHOICE` al enviar el `TestAttempt` y calculará el `score` y `passed`. El estado de la `Application` se actualiza.
+
+7.  **Matching y Ranking Básico (Recruiter):**
+    *   **Listar Aplicaciones:** Para cada `JobPosting`, el reclutador puede ver una lista de `Application`s.
+    *   **Ranking Simple:** La lista de aplicaciones debe estar **ordenada por el `score` del `TestAttempt`** (de mayor a menor) y luego por la **cantidad de `requiredSkills` coincidentes** con el `FreelancerProfile`.
+    *   **Visualización de Perfil Básico:** El reclutador puede hacer clic en una aplicación para ver el `FreelancerProfile` asociado y el `score` del test.
+
+8.  **Feedback Básico para Candidatos (Freelancer):**
+    *   Al completar un test, el *freelancer* debe recibir una notificación simple indicando si **"Aprobó" o "No aprobó"** y su `score`. **No se requiere feedback generativo o detallado en el MVP.** El estado de la aplicación se actualiza.
+
+9.  **Seguridad y Privacidad (Consideraciones):**
+    *   **Cifrado de Contraseñas:** Usar una librería como `bcrypt` para las contraseñas de `User`.
+    *   **Protección de Datos Sensibles:** Aunque no biométricos para el MVP, asegurar que los datos de perfil y aplicaciones estén protegidos con un manejo adecuado de JWT.
+    *   **Disclaimers:** Incluir placeholders para términos de servicio y política de privacidad en el frontend.
+
+**Evitar en el MVP (Complejidad Innecesaria):**
+*   Integración con IA avanzada (LLMs para análisis de texto, genomas profesionales detallados, feedback generativo complejo).
+*   Verificación de autenticidad de contenido generado por IA.
+*   Videollamadas, chat en tiempo real.
+*   Sistemas de pago o facturación.
+*   Notificaciones push o emails complejos (bastará con notificaciones internas básicas).
+*   Perfiles de equipo, gestión de proyectos post-contratación.
+*   Tipos de preguntas de test avanzados (simulaciones, carga de archivos, etc.).
+*   Roles de usuario adicionales (super-admin, etc.).
+
+**Criterios de Éxito para el MVP:**
+*   **Funcionalidad End-to-End:** Un *freelancer* puede registrarse, crear su perfil, encontrar una oferta, aplicar, tomar un test y ver su resultado. Un *reclutador* puede registrarse, crear una oferta, crear un test, y ver una lista rankeada de aplicantes.
+*   **Usabilidad Básica:** Interfaz clara y navegable para los flujos principales.
+*   **Estabilidad:** La aplicación no debe fallar en los flujos principales.
+*   **Despliegue Simple:** Capaz de ser desplegado en un entorno de desarrollo/prueba.
+
+---
+
+Este prompt proporciona una hoja de ruta clara para construir un MVP funcional, evitando las complejidades que no son estrictamente necesarias para validar las hipótesis principales de tu plataforma. ¡Mucha suerte!

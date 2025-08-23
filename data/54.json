@@ -1,0 +1,78 @@
+{
+  "users": {
+    "userName": "Nombre de usuario",
+    "userPassword": "Contraseña",
+    "userEmail": "Correo electrónico",
+    "userBasicData": {
+      "firstNames": "Nombres",
+      "lastNames": "Apellidos",
+      "documentId": "Rif / nit / documento de identidad",
+      "gender": "Género",
+      "phoneNumber": "Número de teléfono"
+      
+    },
+    "userType": "Tipo de usuario",
+    "userInterests": "Intereses",
+    "userPreferences": {
+       "settings": "Configuración",
+       "parameters": "Parámetros"
+    }
+ },
+  "freelancers": {
+    "freeUserId": "Id de usuario",
+    "freeOfferedServices": "Servicios ofrecidos",
+    "freeExperience": "Experiencia",
+    "freePortfolio": "Portafolio",
+    "freeCurriculumSummary": "Resumen curricular",
+    "freeSkills": "Aptitudes",
+    "freeYearsOfExperience": "Años de experiencia",
+    "freeAbilities": "Habilidades técnicas y blandas que posee el freelancer"
+  },
+  "recruiters": {
+    "recUserId": "Id de usuario",
+    "recJobOfferIds": "Id ofertas de empleo"
+  },
+  "jobOffer": {
+    "jobName": "Nombre de empleo",
+    "jobDescription": "Descripción",
+    "jobCategory": "Categoría",
+    "jobRequestedPosition": "Cargo solicitado",
+    "jobRequiredSkills": "Aptitudes requeridas",
+    "jobApplicants": {
+        "freelancersId": "Id freelancer (Datos de la colección freelancers)",
+        "status": "Estado del postulante",
+        "skillsTestScore": "Puntuación en la prueba"
+     }
+  },
+  "skillsTests": {
+    "skiRecruiterId": "Id reclutador",
+    "skiFreelancerId": "Id freelancer",
+    "skiTitle": "Título",
+    "skiDescription": "Descripción",
+    "skiTestObjectives": "Objetivos de la prueba",
+    "skiStartDate": "Fecha de inicio",
+    "skiDeadline": "Fecha límite",
+    "skiTemplateIdUsed": "Id plantilla usada",
+    "skiEvaluation": {
+        "punctuation": "Puntuación de la evaluación ",
+        "correctAns":"respuesta correcta",
+        "wongAns":"respuesta incorrecta",
+        "status": "Estado de la evalauación del postulante (aprobado o no)"
+     }
+  },
+  "templates": {
+    "temTitle": "Título",
+    "temDescription": "Descripción",
+    "temTextContent": "Contenido textual",
+    "temMultimediaContent": "Contenido multimedia",
+    "temObjectives": "Objetivos",
+    "temCategory": "Categoría"
+  },
+  "interest": {
+    "intFreeYearsOfExperience": "Número de años de experiencia",
+    "intSkiEvaluationPunctuation": "Puntuación de la prueba técnica",
+    "intUserPreferenceParameters": "Parámetros de preferencias para un aspirante en la parte técnica y blanda",
+    "intjobRequiredSkills":"Aptitudes requeridas de la oferta",
+    "intFreeName":"nombre del freelancer"
+  }
+}

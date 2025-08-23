@@ -1,0 +1,17 @@
+
+Genera el código para un componente de React funcional usando TypeScript (.tsx).
+
+**Nombre del Componente**: {{nombre}}
+
+**Requisitos**:
+1.  Debe ser una función de flecha exportada por defecto.
+2.  Debe importar `React` de 'react'.
+3.  Debe definir una interfaz de props llamada `{{nombre}}Props`. Por ahora, déjala vacía.
+4.  El componente debe aceptar estas props.
+5.  Debe retornar un `div` simple que contenga un `h2` con el texto "Componente: {{nombre}}".
+{{#if con_estado}}
+6.  Incluye un estado simple usando `useState`. Llama a la variable de estado `count` y su función `setCount`, inicialízala en 0.
+7.  Muestra el valor de `count` en un párrafo debajo del `h2`.
+{{/if}}
+
+Asegúrate de que el código esté bien formateado.
