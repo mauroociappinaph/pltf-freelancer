@@ -172,5 +172,6 @@ Automáticamente, haré:
 
 1.  Cambiar a la rama `develop` (`git checkout develop`).
 2.  Actualizarla con los cambios que acabas de fusionar (`git pull`).
-3.  **No borraré la rama de feature local automáticamente.** Se mantendrá para tu referencia, a menos que me pidas explícitamente que la borre (ej. `git branch -d <nombre-de-la-rama>`).
-4.  Te confirmaré que todo está limpio y esperaré la instrucción para la siguiente tarea.
+3.  **Actualizar el `README.md`:** Añadiré un resumen de los cambios realizados en la tarea completada a la sección "Actualizaciones Recientes del Agente" en el `README.md`.
+4.  **No borraré la rama de feature local automáticamente.** Se mantendrá para tu referencia, a menos que me pidas explícitamente que la borre (ej. `git branch -d <nombre-de-la-rama>`).
+5.  Te confirmaré que todo está limpio y esperaré la instrucción para la siguiente tarea.
