@@ -29,6 +29,6 @@ jobs:
       - name: Run lint
         run: npx eslint
       - name: Run type check
-        run: pnpm tsc --noEmit
+        run: pnpm nx tsc --noEmit
       - name: Run tests
         run: pnpm test
