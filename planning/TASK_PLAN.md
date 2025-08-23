@@ -1,4 +1,4 @@
-# Plan de Implementación: Plataforma Evaluta
+# Plan de Implementación: Plataforma Conexus
 
 Este documento desglosa el proyecto completo en fases, tareas y subtareas accionables. Cada tarea principal está vinculada a los requerimientos definidos en `REQUIREMENTS.md`.
 
@@ -11,6 +11,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - [ ] 1.2. Instalar dependencias principales del workspace con pnpm (typescript, prettier, eslint, husky).
   - [ ] 1.3. Configurar los archivos raíz (`.prettierrc`, `.eslintrc.json`).
   - [ ] 1.4. Configurar Husky con `lint-staged` para el hook `pre-commit`.
+  - [ ] 1.5. Habilitar Dependabot en la configuración del repositorio de GitHub para escaneo de vulnerabilidades.
   - _Requerimientos: 6.1, 6.3_
 
 - [ ] **2. Configuración de Docker**
@@ -19,9 +20,15 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - [ ] 2.3. Crear un archivo `.env.example` con las variables de entorno necesarias (ej. `DATABASE_URL`).
   - _Requerimientos: 6.1_
 
+- [ ] **3. Configuración de CI/CD (Integración Continua)**
+  - [ ] 3.1. Crear el directorio `.github/workflows`.
+  - [ ] 3.2. Añadir un workflow básico de GitHub Actions que se ejecute en cada `push` a la rama `develop`.
+  - [ ] 3.3. Configurar el workflow para que instale dependencias con `pnpm`, ejecute el linter y las pruebas.
+  - _Requerimientos: 6.1, 6.3, 6.4_
+
 ### Fase 2: Desarrollo del Backend (MVP)
 
-- [ ] **3. Inicialización de la Aplicación Backend**
+- [ ] **4. Inicialización de la Aplicación Backend**
   - [ ] 3.1. Generar la aplicación de NestJS (`backend`) dentro de la carpeta `apps/`.
   - [ ] 3.2. Crear el `Dockerfile` para la aplicación `backend`.
   - [ ] 3.3. Integrar el servicio del backend en el `docker-compose.yml`.
@@ -118,3 +125,14 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - [ ] 15.1. Escribir el `README.md` principal con instrucciones de instalación y ejecución.
   - [ ] 15.2. Generar la documentación de la API del backend con Swagger/OpenAPI.
   - _Requerimientos: 6.1_
+
+### Fase 6: Automatización Avanzada del Flujo de Trabajo (Post-MVP)
+
+- [ ] **16. Creación del Servicio de Automatización (Webhook Listener)**
+  - [ ] 16.1. Diseñar la arquitectura para el servicio receptor de webhooks (ej. Serverless Function en Vercel).
+  - [ ] 16.2. Implementar el endpoint inicial para recibir y verificar webhooks de Linear y GitHub.
+  - [ ] 16.3. Configurar la autenticación segura para las APIs de GitHub y Linear que usará el servicio.
+
+- [ ] **17. Implementación de Flujos de Trabajo por Eventos**
+  - [ ] 17.1. Desarrollar la lógica para la creación automática de ramas en GitHub cuando un issue se mueve a "In Progress" en Linear.
+  - [ ] 17.2. Desarrollar la lógica para actualizar el estado de los issues en Linear cuando se crean o fusionan Pull Requests en GitHub.

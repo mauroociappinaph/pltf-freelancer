@@ -1,8 +1,8 @@
-# Documento de Diseño: Plataforma Evaluta
+# Documento de Diseño: Plataforma Conexus
 
 ## 1. Overview
 
-La plataforma "Evaluta" es una aplicación web construida sobre una arquitectura de monorepo para maximizar la compartición de código y la consistencia. Utiliza un stack moderno basado en TypeScript para frontend, backend y el microservicio de IA, asegurando robustez y una excelente experiencia de desarrollo. La infraestructura está diseñada para ser contenerizada con Docker, facilitando la portabilidad y el despliegue.
+La plataforma "Conexus" es una aplicación web construida sobre una arquitectura de monorepo para maximizar la compartición de código y la consistencia. Utiliza un stack moderno basado en TypeScript para frontend, backend y el microservicio de IA, asegurando robustez y una excelente experiencia de desarrollo. La infraestructura está diseñada para ser contenerizada con Docker, facilitando la portabilidad y el despliegue.
 
 ## 2. Arquitectura
 
@@ -50,6 +50,7 @@ graph TD
 - **Base de Datos:** **MongoDB** con **Prisma ORM**
 - **Contenerización:** **Docker** y **Docker Compose**
 - **Calidad de Código:** ESLint, Prettier, Husky
+- **CI/CD:** **GitHub Actions**
 
 ## 3. Componentes e Interfaces
 

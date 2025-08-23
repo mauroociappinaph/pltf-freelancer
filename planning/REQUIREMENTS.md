@@ -1,8 +1,8 @@
-# Documento de Requerimientos: Plataforma Evaluta
+# Documento de Requerimientos: Plataforma Conexus
 
 ## Introducción
 
-Este documento detalla los requerimientos para la plataforma "Evaluta", un sistema inteligente diseñado para optimizar el proceso de reclutamiento de talento freelance. La plataforma conectará a freelancers con reclutadores, automatizando y mejorando la evaluación de habilidades, la gestión de postulaciones y la transparencia del proceso.
+Este documento detalla los requerimientos para la plataforma "Conexus", un sistema inteligente diseñado para optimizar el proceso de reclutamiento de talento freelance. La plataforma conectará a freelancers con reclutadores, automatizando y mejorando la evaluación de habilidades, la gestión de postulaciones y la transparencia del proceso.
 
 ## Requerimientos
 

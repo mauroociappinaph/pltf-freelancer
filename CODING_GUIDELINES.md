@@ -81,6 +81,7 @@ Para asegurar la consistencia del código, la detección temprana de errores y e
 5. Prácticas de Desarrollo y Calidad
 
 Para asegurar la robustez, estabilidad y mantenibilidad del proyecto, adoptaremos las siguientes prácticas clave a lo largo del ciclo de desarrollo:
+	•	Seguridad de Dependencias (Dependabot): Se activará Dependabot en el repositorio de GitHub para escanear automáticamente las dependencias en busca de vulnerabilidades conocidas y crear Pull Requests para actualizarlas a versiones seguras.
 	•	Pruebas Tempranas y Continuas:
 	•	Esencial para el MVP: Cada funcionalidad que desarrollemos debe ir acompañada de sus pruebas (unitarias para funciones/métodos, de integración para los endpoints de la API y, eventualmente, end-to-end para los flujos de usuario críticos).
 	•	Impacto: Esto nos dará confianza para iterar rápidamente, refactorizar sin miedo y asegurar la calidad del código.
@@ -93,7 +94,7 @@ Para asegurar la robustez, estabilidad y mantenibilidad del proyecto, adoptaremo
 	•	Muy Recomendable para el MVP: Utilizaremos herramientas que permitan generar automáticamente la documentación de la API del backend (NestJS) a partir del código.
 	•	Beneficio: Facilita enormemente la comunicación y el desarrollo colaborativo entre el equipo de backend y frontend, y es una buena práctica para cualquier API.
 	•	CI/CD desde el Inicio (simple):
-	•	Habilitador Clave: Configuraremos una pipeline de Integración Continua/Despliegue Continuo (CI/CD) desde las primeras etapas.
+	•	Habilitador Clave: Configuraremos una pipeline de Integración Continua/Despliegue Continuo (CI/CD) utilizando **GitHub Actions** desde las primeras etapas.
 	•	Alcance Inicial: Inicialmente, esta pipeline puede ser muy básica: ejecutar las pruebas automáticamente en cada push al repositorio y construir las imágenes de Docker de los servicios.
 	•	Impacto: Nos acostumbra al flujo de trabajo automatizado, proporciona feedback rápido sobre la calidad del código y prepara el terreno para despliegues más complejos.
 	•	Monitoreo de Rendimiento y Bucle de Retroalimentación del Usuario:
@@ -184,3 +185,24 @@ Para optimizar la asistencia de la IA y asegurar que sus sugerencias sean contex
     2.  **Carga de Contexto Jerárquica:** Antes de cada acción, el agente busca un archivo `GEMINI.md` en el directorio de trabajo actual. Si no lo encuentra, busca en el directorio padre, y así sucesivamente hasta la raíz del proyecto.
     3.  **Especialización por Instrucción:** Las instrucciones en el `GEMINI.md` más cercano a la tarea actual tienen la máxima prioridad. Esto permite que el agente se "especialice" temporalmente. Por ejemplo, un `GEMINI.md` en `apps/ia-microservice/` puede instruir al agente para que genere únicamente código de Python, mientras que en `apps/frontend/` las instrucciones se centrarán en Next.js.
 *   **Implementación:** Se crearán archivos `GEMINI.md` dentro de los directorios de las aplicaciones (`apps/frontend`, `apps/backend`, etc.) a medida que se inicialicen, como se describe en el `TASK_PLAN.md`.
+
+## 11. Flujo de Trabajo de Tareas Automatizado con IA
+
+Para maximizar la eficiencia y estandarizar el desarrollo, adoptaremos un flujo de trabajo semi-automatizado gestionado por el agente de IA.
+
+1.  **Inicio de Tarea:** El desarrollador solicita al agente de IA que comience una tarea, proveyendo el ID de la misma desde Linear (ej. "Comenzar con la tarea EVAL-125").
+2.  **Creación de Rama:** El agente de IA se encarga de:
+    *   Asegurarse de estar en la rama `develop`.
+    *   Actualizar la rama con los últimos cambios del repositorio (`git pull`).
+    *   Crear y cambiarse a una nueva rama de feature siguiendo la convención `feat/<issue-id>-nombre-descriptivo`.
+    *   Notificar al desarrollador que la nueva rama está lista.
+3.  **Desarrollo Colaborativo:** El desarrollador y el agente de IA trabajan juntos en la rama de feature para completar la tarea.
+4.  **Finalización y Commit:** Una vez la tarea está completa y aprobada por el desarrollador, el agente de IA:
+    *   Añade todos los cambios al área de preparación (`git add .`).
+    *   Crea un commit siguiendo el formato de commits convencionales, incluyendo una referencia que cierra el issue de Linear (ej. `feat(auth): implement login form\n\nCloses EVAL-125`).
+5.  **Creación de Pull Request (Paso Manual Clave):**
+    *   El agente de IA sube la rama de feature a GitHub (`git push`).
+    *   **El agente NO fusionará la rama directamente.** En su lugar, proporcionará el enlace para crear un **Pull Request (PR)**.
+    *   El desarrollador es responsable de abrir el PR, revisarlo, verificar que los chequeos de CI (GitHub Actions) pasen, y finalmente, fusionarlo a `develop`. Este paso es un control de calidad humano indispensable.
+6.  **Limpieza:** Una vez el PR es fusionado, el agente de IA puede, si se le solicita, volver a la rama `develop`, actualizarla y borrar la rama de feature que ya no se necesita.
+
