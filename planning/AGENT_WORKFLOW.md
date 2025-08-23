@@ -84,8 +84,9 @@ Automáticamente, yo haré:
 1.  Añadir todos los cambios al área de preparación (`git add .`).
 2.  Crear un commit con un mensaje siguiendo el estándar de Commits Convencionales (ej. `feat(auth): implement user registration endpoint`).
 3.  Subir la rama a GitHub (`git push -u origin <nombre-de-la-rama>`).
-4.  **Te preguntaré si quieres que ejecute las verificaciones automáticas para esta tarea.** (Ver Paso 4).
-5.  **Te entregaré el enlace para crear el Pull Request (PR).**
+4.  **Añadir comentario a la Issue:** Si la tarea está asociada a una issue de GitHub, añadiré un comentario a esa issue detallando la solución implementada.
+5.  **Te preguntaré si quieres que ejecute las verificaciones automáticas para esta tarea.** (Ver Paso 4).
+6.  **Te entregaré el enlace para crear el Pull Request (PR).**
 
 ---
 
