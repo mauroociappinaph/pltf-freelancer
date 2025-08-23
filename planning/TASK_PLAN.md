@@ -7,7 +7,8 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 ### Fase 1: Configuración del Proyecto y Entorno
 
 - [ ] **1. Estructura del Monorepo y Dependencias**
-  - [ ] 1.1. Inicializar el monorepo de Nx en la rama `develop`.
+
+  - [x] 1.1. Inicializar el monorepo de Nx en la rama `develop`.
   - [ ] 1.2. Instalar dependencias principales del workspace con pnpm (typescript, prettier, eslint, husky).
   - [ ] 1.3. Configurar los archivos raíz (`.prettierrc`, `.eslintrc.json`).
   - [ ] 1.4. Configurar Husky con `lint-staged` para el hook `pre-commit`.
@@ -15,6 +16,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - _Requerimientos: 6.1, 6.3_
 
 - [ ] **2. Configuración de Docker**
+
   - [ ] 2.1. Crear el archivo `docker-compose.yml` en la raíz del proyecto.
   - [ ] 2.2. Añadir el servicio de la base de datos MongoDB al `docker-compose.yml`.
   - [ ] 2.3. Crear un archivo `.env.example` con las variables de entorno necesarias (ej. `DATABASE_URL`).
@@ -29,6 +31,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 ### Fase 2: Desarrollo del Backend (MVP)
 
 - [ ] **4. Inicialización de la Aplicación Backend**
+
   - [ ] 3.1. Generar la aplicación de NestJS (`backend`) dentro de la carpeta `apps/`.
   - [ ] 3.2. Crear el `Dockerfile` para la aplicación `backend`.
   - [ ] 3.3. Integrar el servicio del backend en el `docker-compose.yml`.
@@ -36,6 +39,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - _Requerimientos: 6.1, 6.2_
 
 - [ ] **4. Capa de Base de Datos con Prisma**
+
   - [ ] 4.1. Inicializar Prisma en la aplicación `backend`.
   - [ ] 4.2. Implementar el `schema.prisma` completo con todos los modelos y relaciones.
   - [ ] 4.3. Generar el cliente de Prisma y ejecutar la migración inicial.
@@ -43,6 +47,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - _Requerimientos: 5.1, 5.2, 5.3, 5.4_
 
 - [ ] **5. Módulo de Autenticación y Usuarios**
+
   - [ ] 5.1. Crear el `AuthModule` y `UsersModule` en NestJS.
   - [ ] 5.2. Implementar el servicio de registro de usuarios (con hashing de contraseña).
   - [ ] 5.3. Implementar el servicio de login que retorna un JWT.
@@ -51,12 +56,14 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - _Requerimientos: 1.1, 1.4_
 
 - [ ] **6. Módulo de Perfiles (Freelancer y Reclutador)**
+
   - [ ] 6.1. Crear el `ProfilesModule`.
   - [ ] 6.2. Implementar los servicios para crear y actualizar perfiles de freelancer y reclutador.
   - [ ] 6.3. Crear los endpoints protegidos para la gestión de perfiles.
   - _Requerimientos: 1.2, 1.3_
 
 - [ ] **7. Módulo de Ofertas de Trabajo y Tests**
+
   - [ ] 7.1. Crear el `JobsModule` y `TestsModule`.
   - [ ] 7.2. Implementar los servicios CRUD para `JobPosting`.
   - [ ] 7.3. Implementar los servicios CRUD para `Test` y `Question`.
@@ -74,6 +81,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 ### Fase 3: Desarrollo del Frontend (MVP)
 
 - [ ] **9. Inicialización de la Aplicación Frontend**
+
   - [ ] 9.1. Generar la aplicación de Next.js (`frontend`) dentro de la carpeta `apps/`.
   - [ ] 9.2. Configurar Tailwind CSS.
   - [ ] 9.3. Crear una librería de UI compartida (`libs/shared/ui`) con componentes base (botones, inputs).
@@ -81,6 +89,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - _Requerimientos: 6.1, 6.2_
 
 - [ ] **10. Flujo de Autenticación y Páginas Públicas**
+
   - [ ] 10.1. Crear las páginas de Registro y Login.
   - [ ] 10.2. Implementar los formularios con `react-hook-form`.
   - [ ] 10.3. Integrar las llamadas a la API de `auth/` del backend.
@@ -89,6 +98,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
   - _Requerimientos: 1.1, 2.2, 2.3_
 
 - [ ] **11. Páginas del Freelancer**
+
   - [ ] 11.1. Crear el dashboard del freelancer (`/dashboard`).
   - [ ] 11.2. Crear la página para editar su perfil.
   - [ ] 11.3. Crear la página para ver sus postulaciones y el estado.
@@ -116,6 +126,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 ### Fase 5: Pruebas y Documentación Final
 
 - [ ] **14. Pruebas**
+
   - [ ] 14.1. Escribir pruebas unitarias para los servicios críticos del backend.
   - [ ] 14.2. Escribir pruebas unitarias para los componentes complejos del frontend.
   - [ ] 14.3. Escribir pruebas de integración para el flujo de postulación.
@@ -129,6 +140,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 ### Fase 6: Automatización Avanzada del Flujo de Trabajo (Post-MVP)
 
 - [ ] **16. Creación del Servicio de Automatización (Webhook Listener)**
+
   - [ ] 16.1. Diseñar la arquitectura para el servicio receptor de webhooks (ej. Serverless Function en Vercel).
   - [ ] 16.2. Implementar el endpoint inicial para recibir y verificar webhooks de Linear y GitHub.
   - [ ] 16.3. Configurar la autenticación segura para las APIs de GitHub y Linear que usará el servicio.

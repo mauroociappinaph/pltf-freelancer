@@ -58,7 +58,7 @@ Ejecutaré las acciones que me pidas (crear archivos, modificarlos, ejecutar com
 
 ---
 
-### **Paso 3: Finalizar una Tarea**
+### **Paso 3: Finalizar una Tarea (Commit y Push)**
 
 Una vez que consideres que todo el trabajo para la tarea está completo y verificado.
 
@@ -78,11 +78,57 @@ Automáticamente, yo haré:
 1.  Añadir todos los cambios al área de preparación (`git add .`).
 2.  Crear un commit con un mensaje siguiendo el estándar de Commits Convencionales (ej. `feat(auth): implement user registration endpoint`).
 3.  Subir la rama a GitHub (`git push -u origin <nombre-de-la-rama>`).
-4.  **Te entregaré el enlace para crear el Pull Request (PR).**
+4.  **Te preguntaré si quieres que ejecute las verificaciones automáticas para esta tarea.** (Ver Paso 4).
+5.  **Te entregaré el enlace para crear el Pull Request (PR).**
 
 ---
 
-### **Paso 4: Revisión y Fusión (Pull Request)**
+### **Paso 4: Verificación Automatizada de Tareas**
+
+Este paso se ejecuta después de que el código ha sido subido a GitHub, pero antes de que la tarea se marque como completada en `TASK_PLAN.md`.
+
+#### Tu Acción
+
+Si te pregunto si quieres verificaciones, me indicarás qué comandos ejecutar.
+
+**Ejemplos de comandos de verificación que puedes pedir:**
+
+> "Ejecuta `pnpm lint` y `tsc --noEmit`."
+> "Corre `pnpm test`."
+> "Verifica dependencias circulares con `npx madge --circular --extensions ts,tsx ./apps/<app-name>`."
+
+#### Mi Respuesta
+
+1.  Ejecutaré los comandos de verificación que me indiques.
+2.  Te reportaré los resultados.
+3.  **Si todas las verificaciones pasan:** Te preguntaré si puedo marcar la tarea como completada en `TASK_PLAN.md` (ej. `[ ]` a `[x]`).
+4.  **Si alguna verificación falla:** Te reportaré el fallo y te preguntaré cómo proceder (lo que podría llevarnos al flujo de manejo de errores).
+
+---
+
+### **Paso 5: Manejo de Errores y Ramas `fix/`**
+
+Este flujo se activa cuando un comando falla o una verificación no pasa.
+
+#### Tu Acción
+
+Me indicarás si quieres que cree una rama `fix/` para abordar el error.
+
+**Ejemplo de frase:**
+
+> "El comando falló. Crea una rama `fix/CONEX-XXX-error-description` para investigar y corregir esto."
+
+#### Mi Respuesta
+
+1.  Crearé la rama `fix/` (ej. `fix/CONEX-XXX-error-description`).
+2.  Trabajaremos en esa rama para aplicar la solución.
+3.  Una vez lista, haré el commit y subiré la rama `fix/` a GitHub.
+4.  Te proporcionaré el enlace para que crees un Pull Request de la rama `fix/` a `develop`. **Tú serás responsable de revisar y fusionar este PR.**
+5.  Una vez fusionado el `fix/` en `develop`, volveré a la rama de la tarea original (`feat/TASK-X.Y-...`) y reintentaré el paso que falló, o continuaré desde donde nos quedamos.
+
+---
+
+### **Paso 6: Revisión y Fusión (Pull Request)**
 
 Este es el paso de control de calidad más importante, y es **100% tuyo**.
 
@@ -99,7 +145,7 @@ En este paso, yo simplemente espero tu confirmación.
 
 ---
 
-### **Paso 5: Limpieza y Siguiente Tarea**
+### **Paso 7: Limpieza y Siguiente Tarea**
 
 Una vez que el PR está fusionado en `develop`.
 
@@ -118,5 +164,5 @@ Me informas que el PR fue fusionado y que podemos continuar.
 Automáticamente, haré:
 1.  Cambiar a la rama `develop` (`git checkout develop`).
 2.  Actualizarla con los cambios que acabas de fusionar (`git pull`).
-3.  Borrar la rama de feature que ya no necesitamos (`git branch -d <nombre-de-la-rama>`).
+3.  **No borraré la rama de feature local automáticamente.** Se mantendrá para tu referencia, a menos que me pidas explícitamente que la borre (ej. `git branch -d <nombre-de-la-rama>`).
 4.  Te confirmaré que todo está limpio y esperaré la instrucción para la siguiente tarea.
