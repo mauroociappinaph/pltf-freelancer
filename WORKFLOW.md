@@ -25,6 +25,7 @@ Este documento describe el flujo de trabajo y los escenarios de uso de las herra
 
 1.  **Ritual de Inicio:** Al comenzar una tarea, se actualiza su estado a "In Progress" con `update_issue`. Este pequeño acto ayuda a formalizar el inicio del trabajo y a enfocarse.
 2.  **Consulta Instantánea:** Para dudas sobre la sintaxis o uso de una librería, se utiliza la combinación de `resolve-library-id` y `get-library-docs` para obtener la documentación al instante sin cambiar de contexto.
+    *   **Consistencia en Tiempo Real:** Las reglas de Cursor configuradas en el IDE contribuyen a este "flow state" al proporcionar feedback inmediato sobre el estilo y la calidad del código, asegurando la adherencia a las directrices sin interrupciones manuales.
 3.  **Notas para el "Yo" del Futuro:** Si se descubre una complicación o una tarea futura mientras se está en medio de otra, en lugar de desviarse, se deja un comentario en la tarea de Linear usando `create_comment`.
     *   *Ejemplo:* `create_comment issueId='...' body='@mauro ¡OJO! Recordar implementar el refresco de token para la API de Google.'`
 

@@ -41,6 +41,9 @@ Basado en la necesidad de una plataforma moderna, escalable, robusta y con fuert
 	•	Infraestructura (Desarrollo/Despliegue):
 	•	Contenedores: Docker y Docker Compose (para entornos de desarrollo consistentes y despliegue simplificado).
 	•	Control de Versiones: Git
+	•	Herramientas de Calidad de Código:
+	•	ESLint: Para análisis estático de código y detección de errores.
+	•	Prettier: Para formateo automático de código y consistencia de estilo.
 	•	MCPs (Multi-Cloud Platforms) a Considerar:
 	•	Playwright: Para pruebas end-to-end automatizadas.
 	•	Firecrawl: Potencialmente para web scraping de ofertas de empleo.
@@ -54,7 +57,7 @@ Justificación del Stack:
 	•	MongoDB & Prisma: Combinación potente para una base de datos NoSQL flexible con un ORM moderno que facilita el desarrollo y la sincronización de esquemas.
 	•	Python/FastAPI para IA: Python es el estándar de la industria para IA/ML, y FastAPI permite construir APIs de alto rendimiento para el microservicio de IA.
 	•	Docker: Asegura que el entorno de desarrollo sea idéntico al de producción, eliminando problemas de “funciona en mi máquina”.
-	•	Principios de Código: El desarrollo se guiará por principios de buenas prácticas de código como DRY (Don’t Repeat Yourself) y SRP (Single Responsibility Principle), y se utilizarán patrones de organización como los ‘barrel files’ para mantener un código limpio y mantenible.
+	•	Principios de Código: El desarrollo se guiará por principios de buenas prácticas de código como DRY (Don’t Repeat Yourself) y SRP (Single Responsibility Principle), y se utilizarán patrones de organización como los ‘barrel files’ para mantener un código limpio y mantenible. **La integración de ESLint y Prettier asegurará la aplicación consistente de estos estándares.**
 	•	Librerías Externas: Aprovechamiento del ecosistema para acelerar el desarrollo, mejorar la calidad y la robustez de la aplicación.
 
 ## 2.1. Control de Versiones

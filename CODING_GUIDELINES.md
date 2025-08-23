@@ -61,6 +61,9 @@ Para asegurar la consistencia del código, la detección temprana de errores y e
 	•	Prettier (Formateador de Código):
 	•	Propósito: Formatea automáticamente el código para asegurar un estilo consistente en todo el proyecto (indentación, comillas, saltos de línea, etc.). Elimina las discusiones sobre el estilo en las revisiones de código.
 	•	Configuración: Se configurará a nivel de monorepo para trabajar en conjunto con ESLint, resolviendo conflictos de estilo automáticamente.
+	•	Reglas de Cursor (IDE):
+	•	Propósito: Complementan a ESLint y Prettier proporcionando feedback en tiempo real directamente en el IDE. Permiten aplicar las directrices de codificación y estilo de forma proactiva mientras se escribe el código, ayudando a mantener el "flow state" y la consistencia inmediata.
+	•	Configuración: Se configurarán dentro del entorno de Cursor para alinear las sugerencias y correcciones automáticas con las reglas definidas por ESLint y Prettier, así como con las preferencias específicas del proyecto.
 	•	Integración en el Flujo de Trabajo:
 	•	Scripts NPM: Se añadirán scripts en el package.json del monorepo para ejecutar ESLint y Prettier manualmente o como parte de los procesos de CI/CD.
 	•	Integración con IDE (VS Code): Se recomendarán extensiones de VS Code para ESLint y Prettier, permitiendo que el formateo y la detección de errores ocurran en tiempo real mientras se escribe el código.
