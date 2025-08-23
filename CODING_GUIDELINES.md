@@ -2,7 +2,22 @@ Directrices de Codificación y Principios de Diseño
 
 Este documento detalla los principios de diseño y las directrices de codificación que seguiremos en el desarrollo de la Plataforma Inteligente para el Reclutamiento Óptimo de Personal Freelance. Adherirse a estos principios nos ayudará a construir un código base mantenible, escalable, legible y robusto.
 
-1. DRY (Don’t Repeat Yourself - No te Repitas)
+## 1. Flujo de Trabajo de Git (Git Workflow)
+
+Para mantener un historial de cambios limpio, predecible y profesional, adoptaremos el siguiente modelo de ramas:
+
+*   **`master`**: Esta rama es sagrada. Contiene la última versión estable y desplegable del proyecto. No se debe hacer `commit` directamente a `master`. El código solo llega a `master` a través de Pull Requests desde la rama `develop`.
+*   **`develop`**: Es la rama principal de integración. Contiene las últimas funcionalidades desarrolladas que están listas para ser incluidas en la próxima versión estable. Es la rama base para todo el nuevo desarrollo.
+*   **`feat/<issue-id>-nombre-descriptivo`**: Para cada nueva funcionalidad o corrección de bug planificada, se creará una rama a partir de `develop`. El nombre debe incluir el ID de la tarea de Linear (ej. `EVAL-123`) para conectar el código con la planificación.
+    *   *Ejemplo de feature:* `feat/EVAL-123-user-authentication`
+    *   *Ejemplo de bug fix:* `feat/EVAL-124-fix-login-button`
+*   **`hotfix/<nombre-del-parche>`**: Exclusivamente para correcciones críticas y urgentes en producción. Se crea a partir de `master` y, una vez finalizado, debe fusionarse tanto en `master` como en `develop`.
+
+Este flujo de trabajo aísla el desarrollo en progreso, mantiene la rama `master` siempre estable y facilita la revisión de código a través de Pull Requests.
+
+## 2. Principios de Diseño de Código
+
+### 2.1. DRY (Don’t Repeat Yourself - No te Repitas)
 
 Principio: Cada pieza de conocimiento debe tener una representación única, inequívoca y autorizada dentro del sistema.
 
@@ -11,10 +26,7 @@ Aplicación en el Proyecto:
 	•	Lógica de Negocio Reutilizable: Identificaremos y extraeremos lógica de negocio común o utilidades que puedan reutilizarse en diferentes partes de la aplicación. Por ejemplo, funciones de validación de datos, formateo de fechas o cálculos específicos. Estas se colocarán en librerías compartidas (libs/utils/).
 	•	Componentes Reutilizables (Frontend): Crearemos componentes de UI genéricos y reutilizables en el frontend para evitar recrear la misma interfaz múltiples veces.
 
-Ejemplo:
-En lugar de definir interface User { id: string; email: string; } en el backend y de nuevo en el frontend, la definiremos una sola vez en libs/shared-types/src/lib/user.interface.ts y la importaremos donde sea necesaria.
-
-2. SRP (Single Responsibility Principle - Principio de Responsabilidad Única)
+### 2.2. SRP (Single Responsibility Principle - Principio de Responsabilidad Única)
 
 Principio: Un módulo, clase o función debe tener una, y solo una, razón para cambiar.
 
@@ -24,10 +36,7 @@ Aplicación en el Proyecto:
 	•	Funciones Enfocadas (FastAPI, NestJS, Next.js): Cada función o método debe hacer una única cosa bien. Si una función necesita hacer varias cosas, es una señal de que podría necesitar ser dividida en funciones más pequeñas y con responsabilidades más específicas.
 	•	Componentes de UI (Next.js): Los componentes de React deben tener una responsabilidad clara, ya sea presentar datos, gestionar un estado específico o interactuar con una API.
 
-Ejemplo:
-Un controlador de NestJS (UserController) solo debería manejar las peticiones HTTP relacionadas con usuarios. La lógica de negocio para crear o actualizar un usuario debería residir en un servicio (UserService), y la interacción con la base de datos en un repositorio (UserRepository).
-
-3. Barrel Files (Archivos Índice)
+### 2.3. Barrel Files (Archivos Índice)
 
 Principio: Un “barrel” es un archivo (típicamente index.ts o index.js) que exporta públicamente interfaces, clases, funciones o constantes de otros módulos dentro del mismo directorio o subdirectorios. Esto simplifica las declaraciones de importación.
 
@@ -65,7 +74,7 @@ Para asegurar la consistencia del código, la detección temprana de errores y e
 	•	Propósito: Complementan a ESLint y Prettier proporcionando feedback en tiempo real directamente en el IDE. Permiten aplicar las directrices de codificación y estilo de forma proactiva mientras se escribe el código, ayudando a mantener el "flow state" y la consistencia inmediata.
 	•	Configuración: Se configurarán dentro del entorno de Cursor para alinear las sugerencias y correcciones automáticas con las reglas definidas por ESLint y Prettier, así como con las preferencias específicas del proyecto.
 	•	Integración en el Flujo de Trabajo:
-	•	Scripts NPM: Se añadirán scripts en el package.json del monorepo para ejecutar ESLint y Prettier manualmente o como parte de los procesos de CI/CD.
+	•	Scripts de Gestor de Paquetes (pnpm): Se añadirán scripts en el package.json del monorepo para ejecutar ESLint y Prettier manualmente o como parte de los procesos de CI/CD.
 	•	Integración con IDE (VS Code): Se recomendarán extensiones de VS Code para ESLint y Prettier, permitiendo que el formateo y la detección de errores ocurran en tiempo real mientras se escribe el código.
 	•	Hooks de Git (Husky + lint-staged): Se configurarán hooks de pre-commit para que ESLint y Prettier se ejecuten automáticamente solo en los archivos modificados antes de cada commit. Esto asegura que solo el código que cumple con los estándares se suba al repositorio.
 
@@ -164,3 +173,14 @@ Para acelerar el desarrollo y mantener la consistencia, utilizaremos un sistema 
 2.  En la terminal, ejecutas un comando como: `/crear_componente_react --nombre=UserProfile`
 3.  El sistema utiliza la plantilla de `dev_prompts/react_component.prompt` para generar el código del componente.
 4.  Pega el código generado en un nuevo archivo en el proyecto.
+
+## 10. Estrategia de Especialización del Agente IA (GEMINI.md)
+
+Para optimizar la asistencia de la IA y asegurar que sus sugerencias sean contextualmente relevantes para cada parte del monorepo, se utilizará un sistema de archivos de configuración `GEMINI.md`.
+
+*   **Concepto Clave:** No se crean múltiples "agentes de IA". Se utiliza un único agente (Gemini CLI) que adapta su comportamiento leyendo archivos de instrucciones locales.
+*   **Mecanismo de Funcionamiento:**
+    1.  **Un Único Agente:** El Gemini CLI es el único agente que opera en el proyecto.
+    2.  **Carga de Contexto Jerárquica:** Antes de cada acción, el agente busca un archivo `GEMINI.md` en el directorio de trabajo actual. Si no lo encuentra, busca en el directorio padre, y así sucesivamente hasta la raíz del proyecto.
+    3.  **Especialización por Instrucción:** Las instrucciones en el `GEMINI.md` más cercano a la tarea actual tienen la máxima prioridad. Esto permite que el agente se "especialice" temporalmente. Por ejemplo, un `GEMINI.md` en `apps/ia-microservice/` puede instruir al agente para que genere únicamente código de Python, mientras que en `apps/frontend/` las instrucciones se centrarán en Next.js.
+*   **Implementación:** Se crearán archivos `GEMINI.md` dentro de los directorios de las aplicaciones (`apps/frontend`, `apps/backend`, etc.) a medida que se inicialicen, como se describe en el `TASK_PLAN.md`.

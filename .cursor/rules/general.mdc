@@ -1,0 +1,130 @@
+---
+alwaysApply: true
+---
+
+# Reglas de Cursor para el Proyecto "Evaluta" (Next.js & NestJS)
+
+Este archivo define un conjunto de comandos y prompts de IA personalizados para el stack específico de este proyecto,
+asegurando que el código generado siga las convenciones de Next.js, NestJS, Prisma y Zod.
+
+---
+
+## Comandos de Next.js (Frontend)
+
+### @command Página de Next.js (next-page)
+
+Crea un nuevo componente de Página para el App Router de Next.js. El componente será un Server Component por defecto y el
+nombre del componente debe ser "Page".
+import type { NextPage } from 'next';
+
+const Page: NextPage = () => {
+return (
+
+<main>
+<h1>{{directoryName}}</h1>
+</main>
+);
+};
+
+export default Page;
+
+### @command Componente Cliente de Next.js (next-client-component)
+
+Crea un nuevo componente de cliente para Next.js, incluyendo la directiva `'use client'`. Ideal para componentes con
+interactividad y hooks.
+'use client';
+
+import React, { useState } from 'react';
+
+type Props = {
+// Tus props aquí
+};
+
+const {{fileName}}: React.FC<Props> = () => {
+const [count, setCount] = useState(0);
+
+    return (
+      <div>
+        <p>Componente Cliente: {{fileName}}</p>
+        <button onClick={() => setCount(count + 1)}>Click me</button>
+      </div>
+    );
+
+};
+
+export default {{fileName}};
+
+### @command Ruta de API de Next.js (next-api-route)
+
+Crea una nueva ruta de API (`route.ts`) para el App Router de Next.js con un handler GET de ejemplo.
+import { NextResponse } from 'next/server';
+
+export async function GET(request: Request) {
+// Lógica de la API aquí
+return NextResponse.json({ message: 'Hello from {{directoryName}}' });
+}
+
+---
+
+## Comandos para NestJS (Backend)
+
+### @command Servicio NestJS (nest-service)
+
+Crea una clase de servicio de NestJS, inyectable y con un constructor vacío.
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class {{fileName}}Service {
+constructor() {}
+
+    // Métodos del servicio aquí
+
+}
+
+### @command Controlador NestJS (nest-controller)
+
+Crea una clase de controlador de NestJS, inyectando el servicio correspondiente e incluyendo un método GET de ejemplo.
+import { Controller, Get } from '@nestjs/common';
+import { {{fileName}}Service } from './{{fileName}}.service';
+
+@Controller('{{fileName.toLowerCase()}}')
+export class {{fileName}}Controller {
+constructor(private readonly {{fileName.toLowerCase()}}Service: {{fileName}}Service) {}
+
+    @Get()
+    findAll() {
+      return this.{{fileName.toLowerCase()}}Service.findAll();
+    }
+
+}
+
+---
+
+## Comandos para Base de Datos y Validación
+
+### @command Modelo de Prisma (prisma-model)
+
+Analiza el texto seleccionado y conviértelo en un modelo para el `schema.prisma`, incluyendo tipos, relaciones y atributos
+como `@id`, `@unique`, `@default`, `@relation`.
+
+### @command Esquema de Zod (zod-schema)
+
+A partir de una interfaz de TypeScript seleccionada, crea un esquema de validación de Zod. Infiere los tipos de Zod (
+`.string()`, `.number()`, `.email()`, etc.) y añade validaciones básicas como `.min()` donde sea apropiado.
+
+---
+
+## Comandos de Calidad y Refactorización
+
+### @command Generar Test (jest)
+
+Toma el código seleccionado y genera un archivo de prueba (`.test.tsx` o `.test.ts`).
+
+- Para componentes de **Next.js**, debe usar `@testing-library/react` y `jest-environment-jsdom`.
+- Para servicios o controladores de **NestJS**, debe usar `@nestjs/testing`.
+  Debe crear un bloque `describe` para la unidad a probar y un `it` para un caso de prueba inicial.
+
+### @command Documentar Código (jsdoc)
+
+Analiza la función, método o componente seleccionado y añade un bloque de comentarios JSDoc explicando su propósito, los
+parámetros (`@param`) o props (`@param`) y lo que retorna (`@returns`).
