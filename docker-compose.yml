@@ -1,0 +1,3 @@
+version: '3.8'
+services:
+  # Aquí se añadirán los servicios (backend, frontend, db, etc.)
