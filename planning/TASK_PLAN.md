@@ -21,7 +21,7 @@ Este documento desglosa el proyecto completo en fases, tareas y subtareas accion
 - [ ] **2. Configuración de Docker**
   - [x] 2.1. Crear el archivo `docker-compose.yml` en la raíz del proyecto.
   - [x] 2.2. Añadir el servicio de la base de datos MongoDB al `docker-compose.yml`.
-  - [ ] 2.3. Crear un archivo `.env.example` con las variables de entorno necesarias (ej. `DATABASE_URL`).
+  - [x] 2.3. Crear un archivo `.env.example` con las variables de entorno necesarias (ej. `DATABASE_URL`).
   - _Requerimientos: 6.1_
 
 - [ ] **3. Configuración de CI/CD (Integración Continua)**
