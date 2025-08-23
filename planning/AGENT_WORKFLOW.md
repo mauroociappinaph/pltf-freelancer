@@ -27,6 +27,7 @@ Lanza el proceso con una frase clara y directa.
 #### Mi Respuesta
 
 Al recibir tu instrucción, yo me encargaré de:
+
 1.  **Verificar duplicados:** Antes de iniciar la tarea, buscaré archivos o lógica existente que pueda indicar que la tarea ya está realizada o que hay componentes similares. Si encuentro algo, te lo notificaré para que decidamos cómo proceder.
 2.  Confirmar la tarea.
 3.  Actualizar mi rama `develop` local con los últimos cambios de GitHub (`git pull`).
@@ -76,6 +77,7 @@ Me das la orden de cerrar la tarea y preparar todo para la integración.
 #### Mi Respuesta
 
 Automáticamente, yo haré:
+
 1.  Añadir todos los cambios al área de preparación (`git add .`).
 2.  Crear un commit con un mensaje siguiendo el estándar de Commits Convencionales (ej. `feat(auth): implement user registration endpoint`).
 3.  Subir la rama a GitHub (`git push -u origin <nombre-de-la-rama>`).
@@ -103,7 +105,7 @@ Si te pregunto si quieres verificaciones, me indicarás qué comandos ejecutar.
 1.  Ejecutaré los comandos de verificación que me indiques.
 2.  Te reportaré los resultados.
 3.  **Si todas las verificaciones pasan:** Te preguntaré si puedo marcar la tarea como completada en `TASK_PLAN.md` (ej. `[ ]` a `[x]`).
-4.  **Si alguna verificación falla:** Te reportaré el fallo y te preguntaré cómo proceder (lo que podría llevarnos al flujo de manejo de errores).
+4.  **Si alguna verificación falla:** Te reportaré el fallo y te preguntaré cómo proceder (lo que podría llevarnos al flujo de manejo de errores). Si el fallo es en el workflow de CI/CD, y tienes configurado el token de GitHub, crearé automáticamente una issue en GitHub con el mensaje de error exacto, el stack trace (si aplica) y los pasos que llevaron al fallo. Una vez que el PR de fix asociado sea fusionado, añadiré un comentario a la issue indicando que el fix ha sido aplicado y, si es posible, un resumen de la solución.
 
 ---
 
@@ -126,6 +128,7 @@ Me indicarás si quieres que cree una rama `fix/` para abordar el error.
 3.  Una vez lista, haré el commit y subiré la rama `fix/` a GitHub.
 4.  Te proporcionaré el enlace para que crees un Pull Request de la rama `fix/` a `develop`. **Tú serás responsable de revisar y fusionar este PR.**
 5.  Una vez fusionado el `fix/` en `develop`, volveré a la rama de la tarea original (`feat/TASK-X.Y-...`) y reintentaré el paso que falló, o continuaré desde donde nos quedamos.
+6.  Si me encuentro con un problema que no puedo resolver después de varios intentos (como un error persistente en la generación de una aplicación), y tienes configurado el token de GitHub, te preguntaré si quieres que cree una issue en GitHub con el mensaje de error exacto, el stack trace (si aplica) y los pasos que llevaron al problema para su investigación externa. Una vez que el PR de fix asociado sea fusionado, añadiré un comentario a la issue indicando que el fix ha sido aplicado y, si es posible, un resumen de la solución.
 
 ---
 
@@ -163,6 +166,7 @@ Me informas que el PR fue fusionado y que podemos continuar.
 #### Mi Respuesta
 
 Automáticamente, haré:
+
 1.  Cambiar a la rama `develop` (`git checkout develop`).
 2.  Actualizarla con los cambios que acabas de fusionar (`git pull`).
 3.  **No borraré la rama de feature local automáticamente.** Se mantendrá para tu referencia, a menos que me pidas explícitamente que la borre (ej. `git branch -d <nombre-de-la-rama>`).
