@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "verify-all": "pnpm lint && tsc --noEmit && pnpm test"
+    "verify-all": "pnpm lint && tsc --noEmit && pnpm test",
+    "prepare": "husky"
   },
   "devDependencies": {
     "eslint": "^9.34.0",
@@ -12,5 +13,14 @@
     "nx": "21.4.1",
     "prettier": "^3.6.2",
     "typescript": "^5.9.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss}": [
+      "prettier --write"
+    ]
   }
 }
