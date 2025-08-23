@@ -24,6 +24,8 @@ Lanza el proceso con una frase clara y directa.
 
 > "He encontrado un bug. Lo he registrado en Linear como `CONEX-42`. Empecemos a trabajar en él."
 
+> "Muéstrame los issues abiertos en GitHub."
+
 #### Mi Respuesta
 
 Al recibir tu instrucción, yo me encargaré de:
@@ -120,11 +122,11 @@ Me indicarás si quieres que cree una rama `fix/` para abordar el error.
 
 **Ejemplo de frase:**
 
-> "El comando falló. Crea una rama `fix/CONEX-XXX-error-description` para investigar y corregir esto."
+> "El comando falló. Crea una rama `fix/issue-<numero-del-issue>` para investigar y corregir esto."
 
 #### Mi Respuesta
 
-1.  Crearé la rama `fix/` (ej. `fix/CONEX-XXX-error-description`).
+1.  Crearé la rama `fix/` (ej. `fix/issue-<numero-del-issue>`).
 2.  Trabajaremos en esa rama para aplicar la solución.
 3.  Una vez lista, haré el commit y subiré la rama `fix/` a GitHub.
 4.  Te proporcionaré el enlace para que crees un Pull Request de la rama `fix/` a `develop`. **Tú serás responsable de revisar y fusionar este PR.**
