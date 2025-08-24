@@ -98,7 +98,6 @@ Consultar `planning/TASK_PLAN.md` para el estado más actualizado de las tareas.
 Actualmente, estamos experimentando los siguientes problemas:
 
 - **Generación de Aplicación Nx:** Al intentar generar la aplicación de NestJS (`backend`) con Nx, el comando falla con el error `Unable to resolve local plugin with import path @nrwl/nest`. A pesar de varios intentos de depuración, el problema persiste. Se ha intentado crear una issue en GitHub para su seguimiento, pero ha fallado debido a problemas de credenciales.
-- **Credenciales de GitHub para el Agente:** La creación automática de issues en GitHub por parte del agente está fallando debido a problemas de credenciales ("Bad credentials"). Se ha actualizado el token en `.gemini/settings.json` con uno nuevo que tiene el scope `repo`, pero el problema persiste. Se requiere una verificación adicional de la configuración del token y sus permisos, y posiblemente reiniciar el CLI de Gemini.
 
 ## Guía del Agente Gemini
 
