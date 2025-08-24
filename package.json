@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "verify-all": "pnpm lint && tsc --noEmit && pnpm test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo \"No tests configured yet\""
   },
   "devDependencies": {
     "eslint": "^9.34.0",
