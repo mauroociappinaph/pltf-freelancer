@@ -4,9 +4,75 @@ Este es el repositorio del proyecto "Plataforma Inteligente para el Reclutamient
 
 ## Resumen del Proyecto
 
-[Aquí irá un resumen detallado del proyecto, sus objetivos y funcionalidades clave.]
+El objetivo principal es desarrollar una plataforma web innovadora que optimice el proceso de reclutamiento de talento freelance, utilizando inteligencia artificial para conectar de manera eficiente a reclutadores y freelancers. La plataforma busca resolver las frustraciones comunes de ambos grupos (opacidad, ineficiencia, falta de feedback, seguridad) y capitalizar las tendencias del mercado (digitalización, IA, revalorización de habilidades blandas).
 
-## Estado Actual del Proyecto
+## Características Principales
+
+- **Matching Inteligente:** Algoritmos de IA para emparejar ofertas de trabajo con perfiles de freelancers.
+- **Gestión de Proyectos:** Herramientas para la administración de proyectos y seguimiento del progreso.
+- **Comunicación Integrada:** Canales de comunicación entre empresas y freelancers.
+- **Evaluación y Feedback:** Sistema de evaluación de desempeño y recolección de feedback.
+- **Análisis de Datos:** Dashboards y reportes para insights sobre el proceso de reclutamiento.
+
+## Tecnologías Utilizadas
+
+- **Frontend:** React, Next.js, TypeScript, Tailwind CSS
+- **Backend:** Node.js, Express.js, GraphQL, PostgreSQL
+- **Inteligencia Artificial:** Python, TensorFlow, Keras, scikit-learn
+- **DevOps:** Docker, Kubernetes, CI/CD (GitHub Actions)
+
+## Estructura del Proyecto
+
+- `apps/`: Contiene las aplicaciones frontend y backend.
+  - `frontend/`: Aplicación Next.js para la interfaz de usuario.
+  - `backend/`: Servidor Node.js con Express.js y GraphQL.
+- `libs/`: Librerías compartidas y módulos reutilizables.
+- `tools/`: Scripts y herramientas de desarrollo.
+- `docs/`: Documentación del proyecto.
+- `data/`: Datos de ejemplo o para entrenamiento de IA.
+- `design/`: Archivos de diseño y wireframes.
+- `planning/`: Documentos de planificación y requisitos.
+
+## Configuración y Ejecución
+
+Para configurar y ejecutar el proyecto localmente, sigue estos pasos:
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/tu-usuario/tu-repositorio.git
+    cd tu-repositorio
+    ```
+2.  **Instalar dependencias:**
+    ```bash
+    pnpm install
+    ```
+3.  **Configurar variables de entorno:**
+    Crea un archivo `.env` en la raíz del proyecto basado en `.env.example` y configura las variables necesarias.
+4.  **Docker Compose:**
+    Para levantar los servicios de desarrollo (como MongoDB), puedes usar Docker Compose:
+    ```bash
+    docker compose up -d
+    ```
+5.  **Ejecutar las migraciones de la base de datos:**
+    ```bash
+    # Comando específico para migraciones (ej. usando TypeORM o Sequelize)
+    # Esto dependerá de la configuración del backend
+    ```
+6.  **Iniciar las aplicaciones:**
+    ```bash
+    pnpm nx serve frontend
+    pnpm nx serve backend
+    ```
+
+### Verificaciones del Proyecto
+
+Para ejecutar todas las verificaciones de código (lint, type check, tests), puedes usar el script `verify-all`:
+
+```bash
+pnpm verify-all
+```
+
+## Estado del Proyecto
 
 El progreso del proyecto se gestiona a través del `PLAN_DE_PROYECTO.md` y el `TASK_PLAN.md`.
 
@@ -27,37 +93,18 @@ El progreso del proyecto se gestiona a través del `PLAN_DE_PROYECTO.md` y el `T
 
 Consultar `planning/TASK_PLAN.md` para el estado más actualizado de las tareas.
 
-## Problemas Conocidos
+### Problemas Conocidos:
 
 Actualmente, estamos experimentando los siguientes problemas:
 
 - **Generación de Aplicación Nx:** Al intentar generar la aplicación de NestJS (`backend`) con Nx, el comando falla con el error `Unable to resolve local plugin with import path @nrwl/nest`. A pesar de varios intentos de depuración, el problema persiste. Se ha intentado crear una issue en GitHub para su seguimiento, pero ha fallado debido a problemas de credenciales.
-- **CI/CD - pnpm no encontrado:** El workflow de GitHub Actions falla al no poder localizar `pnpm`. Se ha implementado un fix para instalar `pnpm` globalmente en el workflow, pero aún no se ha verificado su solución en un nuevo PR.
 - **Credenciales de GitHub para el Agente:** La creación automática de issues en GitHub por parte del agente está fallando debido a problemas de credenciales ("Bad credentials"). Se ha actualizado el token en `.gemini/settings.json` con uno nuevo que tiene el scope `repo`, pero el problema persiste. Se requiere una verificación adicional de la configuración del token y sus permisos, y posiblemente reiniciar el CLI de Gemini.
 
-## Configuración del Entorno de Desarrollo
-
-### Docker Compose
-
-Para levantar los servicios de desarrollo (como MongoDB), puedes usar Docker Compose:
-
-```bash
-docker compose up -d
-```
-
-### Verificaciones del Proyecto
-
-Para ejecutar todas las verificaciones de código (lint, type check, tests), puedes usar el script `verify-all`:
-
-```bash
-pnpm verify-all
-```
-
-## Interacción con el Agente Gemini
+## Guía del Agente Gemini
 
 Este proyecto está siendo desarrollado con la asistencia de un agente de IA (Gemini CLI). Para entender cómo interactuar con el agente y el flujo de trabajo de desarrollo, consulta el archivo `planning/AGENT_WORKFLOW.md`. Se ha mejorado el workflow para incluir la creación automática de issues en GitHub para fallos en CI/CD y problemas irresolubles del agente, así como el seguimiento de su resolución.
 
-## Configuración del Token de GitHub para el Agente
+### Configuración del Token de GitHub para el Agente
 
 El token de GitHub para la interacción del agente con la API de GitHub ha sido configurado en `.gemini/settings.json`.
 
@@ -100,3 +147,11 @@ Para una comprensión completa del proyecto y sus procesos, consulta los siguien
 - `planning/REQUIREMENTS.md`: Documento de requisitos del proyecto.
 - `planning/TASK_PLAN.md`: Plan de tareas detallado.
 - `AGENT_INSTRUCTIONS.md`: Guía rápida de instrucciones para el agente.
+
+## Contribución
+
+¡Las contribuciones son bienvenidas! Por favor, lee `CONTRIBUTING.md` para más detalles.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT.
