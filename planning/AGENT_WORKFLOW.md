@@ -65,7 +65,7 @@ Ejecutaré las acciones que me pidas (crear archivos, modificarlos, ejecutar com
 
 ### **Paso 3: Finalizar una Tarea (Commit y Push)**
 
-Una vez que consideres que todo el trabajo para la tarea está completo y verificado.
+Once you consider that all the work for the task is complete and verified.
 
 #### Tu Acción
 
@@ -176,3 +176,42 @@ Automáticamente, haré:
 3.  **Actualizar el `README.md`:** Añadiré un resumen de los cambios realizados en la tarea completada a la sección "Actualizaciones Recientes del Agente" en el `README.md`.
 4.  **No borraré la rama de feature local automáticamente.** Se mantendrá para tu referencia, a menos que me pidas explícitamente que la borre (ej. `git branch -d <nombre-de-la-rama>`).
 5.  Te confirmaré que todo está limpio y esperaré la instrucción para la siguiente tarea.
+
+---
+
+### **Anexo A: Uso de Herramientas Clave**
+
+Esta sección detalla cómo y por qué uso herramientas fundamentales como `git diff`.
+
+#### **Uso de `git diff`**
+
+`git diff` es un comando esencial que usaré constantemente para garantizar la calidad y seguridad del código.
+
+**1. ¿Cómo lo usaré?**
+
+A través de la herramienta de línea de comandos (`run_shell_command`) con las siguientes variantes:
+
+- `git diff`: Para revisar cambios locales que aún no están preparados para un commit.
+- `git diff --staged`: Para hacer una revisión final de los cambios que ya están en el "staging area" y listos para ser comiteados.
+- `git diff HEAD`: Para obtener una vista completa de todos los cambios (preparados y no preparados) desde el último commit.
+- `git diff <branch>`: Para comparar mi rama actual con otra.
+
+**2. ¿Cuándo lo usaré?**
+
+En momentos clave del flujo de trabajo:
+
+- **Antes de `git add`**: Para revisar mi trabajo y asegurar que solo se preparan los archivos correctos.
+- **Antes de `git commit`**: Como el último paso de verificación de calidad antes de guardar los cambios en el historial.
+- **Cuando me lo pidas**: Para mostrarte el estado actual del trabajo.
+- **Al depurar**: Para aislar los cambios que podrían haber introducido un error.
+
+**3. ¿Por qué lo usaré?**
+
+- **Control de Calidad**: Para detectar errores, código de depuración (`console.log`) o cambios no deseados.
+- **Seguridad**: Para prevenir que información sensible (claves de API, contraseñas, tokens) sea comiteada accidentalmente.
+- **Claridad en Commits**: Para entender con precisión los cambios y poder escribir un mensaje de commit descriptivo y útil.
+- **Atomicidad de Commits**: Para asegurar que cada commit tenga un único propósito. Si el `diff` muestra cambios no relacionados, los separaré en commits distintos.
+
+**4. ¿Dónde lo usaré?**
+
+- Lo ejecutaré siempre desde la **terminal de este entorno**, dentro del **directorio raíz del proyecto** para tener una visión global.
